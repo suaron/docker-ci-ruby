@@ -17,7 +17,7 @@ RUN apt-get update && \
       xauth
 
 # Install Phantom.js
-ENV PHANTOMJS_VERSION 1.9.8
+ENV PHANTOMJS_VERSION 2.1.1
 RUN mkdir -p /srv/var
 RUN curl -sSLO "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2" && \
     tar -xjf "phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2" -C "/tmp" && \
