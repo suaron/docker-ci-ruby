@@ -14,7 +14,10 @@ RUN apt-get update && \
       gstreamer1.0-tools \
       gstreamer1.0-x \
       xvfb \
-      xauth
+      xauth \
+      unzip \
+      libnss3 \
+      libgconf-2-4
 
 # Install Phantom.js
 ENV PHANTOMJS_VERSION 2.1.1
@@ -33,3 +36,13 @@ RUN curl -sSLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux
     tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 && \
     rm -f "node-v$NODE_VERSION-linux-x64.tar.xz" && \
     npm install npm -g
+
+# ChromeDriver - WebDriver for Chrome
+ENV CHROMEDRIVER_VERSION 2.24
+RUN mkdir -p /srv/var
+RUN curl -sSLO "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" && \
+    unzip "chromedriver_linux64.zip" && \
+    rm -f "chromedriver_linux64.zip" && \
+    mv "chromedriver" "/srv/var/chromedriver-$CHROMEDRIVER_VERSION" && \
+    ln -s "/srv/var/chromedriver-$CHROMEDRIVER_VERSION" /usr/bin/chromedriver
+
