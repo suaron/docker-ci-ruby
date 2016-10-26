@@ -17,7 +17,8 @@ RUN apt-get update && \
       xauth \
       unzip \
       libnss3 \
-      libgconf-2-4
+      libgconf-2-4 \
+      openssh-client
 
 # Install Phantom.js
 ENV PHANTOMJS_VERSION 2.1.1
